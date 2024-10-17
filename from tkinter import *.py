@@ -67,22 +67,29 @@ def bateau_couler(ligne,colonne):
             print (bateaux)
             print (coord)
 
-
-            if plateau_des_joueurs[TJ][coord[0]][coord[-1]]==2:
-
+               
+            if plateau_des_joueurs[TJ][ligne][colonne]==2:
+                fin = True
                 ##verifier chaque coordonnés pour bateau pour que savoir si bateau coulé
                 if TJ=="TJ1":
                     for i in range (5):
-                        if plateau_des_joueurs[TJ][liste_bateaux[i][0]][liste_bateaux[i][0]]==2:
-                            return True
-                        else :
-                            return "toucher"
+                        for j in range(len(liste_bateaux[i])):
+                            if plateau_des_joueurs[TJ][liste_bateaux[i][j][0]][liste_bateaux[i][j][1]]==1:
+                                fin=False
+                    if fin == True:
+                        return True
+                    else :
+                        return "toucher"
+                        
                 else:
                     for i in range (5):
-                        if plateau_des_joueurs[TJ][liste_bateaux[5+i][0]][liste_bateaux[5+i][0]]==2:
-                            return True
-                        else :
-                            return "toucher"
+                        for j in range(len(liste_bateaux[i])):
+                            if plateau_des_joueurs[TJ][liste_bateaux[i][j][0]][liste_bateaux[i][j][1]]==1:
+                                fin=False
+                    if fin == True:
+                        return True
+                    else :
+                        return "toucher"
     return False
 
 
@@ -91,6 +98,7 @@ def bateau_couler(ligne,colonne):
 def cliquer_sur_bouton(case  , ligne ,colonne):
     global TJ
     global listeplace
+    global plateau_des_joueurs
     if pacatta==False:
         global plateau_des_joueurs
         if plateau_des_joueurs[TJ][ligne][colonne]==1:
@@ -107,34 +115,35 @@ def cliquer_sur_bouton(case  , ligne ,colonne):
         else:
             TJ="J1"
         if plateau_des_joueurs[TJ][ligne][colonne]==1:
-            plateau_des_joueurs[TJ][ligne][colonne]==2
-            if bateau_couler(ligne ,colonne)==False:
-                print ("louper")
-            elif bateau_couler(ligne,couleur)=="toucher":
+            plateau_des_joueurs[TJ][ligne][colonne]=2
+            if bateau_couler(ligne,colonne)=="toucher":
                 print ("toucher")
+            elif bateau_couler(ligne ,colonne)==False:
+                print ("louper")
             else :
                 if TJ=="J1":
                     print("J2 a gagné")
                 else:
                     print("J1 a gagné")
             if TJ=="J1":
-                for ligne in plateau_j2A:
-                 for j in range(len(liste)):
-                    if plateau_des_joueurs[TJ][ligne][j]==1 or plateau_des_joueurs[TJ]==2:
-                        plateau_j2A[ligne][colonne]=X
-                 print (ligne)
-            else:
-                for ligne in plateau_j2A:
-                    for j in range(len(liste)):
-                        if plateau_des_joueurs[TJ][ligne][j]==1 or plateau_des_joueurs[TJ]==2:
+                for ligne in range(len(plateau_j2A)):
+                    for j in range(len(plateau_j2A[ligne])):
+                        if plateau_des_joueurs[TJ][ligne][j]==2:
                             plateau_j2A[ligne][colonne]=X
-                    print (ligne)
+                    print (plateau_j2A[ligne])
+            else:
+                for ligne in range(len(plateau_j1A)):
+                    for j in range(len(plateau_j1A[ligne])):
+                        if plateau_des_joueurs[TJ][ligne][j]==2:
+                            plateau_j1A[ligne][colonne]=X
+                    print (plateau_j1A[ligne])
         elif plateau_des_joueurs[TJ][ligne][colonne]==0:
-            for ligne in plateau_j2A:
-                    for j in range(len(liste)):
-                        plateau_j2A[ligne][colonne]="$"
-                    print (ligne)
-
+            if TJ=="J1":
+                plateau_j2A[ligne][colonne]="$"
+                print (plateau_j2A[ligne])
+            else :
+                plateau_j1A[ligne][colonne]="$"
+                print (plateau_j1A[ligne])
 
 
 
