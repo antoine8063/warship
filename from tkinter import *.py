@@ -119,8 +119,21 @@ def cliquer_sur_bouton(case  , ligne ,colonne):
                     print("J1 a gagné")
             if TJ=="J1":
                 for ligne in plateau_j2A:
+                 for j in range(len(liste)):
+                    if plateau_des_joueurs[TJ][ligne][j]==1 or plateau_des_joueurs[TJ]==2:
+                        plateau_j2A[ligne][colonne]=X
                  print (ligne)
-                
+            else:
+                for ligne in plateau_j2A:
+                    for j in range(len(liste)):
+                        if plateau_des_joueurs[TJ][ligne][j]==1 or plateau_des_joueurs[TJ]==2:
+                            plateau_j2A[ligne][colonne]=X
+                    print (ligne)
+        elif plateau_des_joueurs[TJ][ligne][colonne]==0:
+            for ligne in plateau_j2A:
+                    for j in range(len(liste)):
+                        plateau_j2A[ligne][colonne]="$"
+                    print (ligne)
 
 
 
