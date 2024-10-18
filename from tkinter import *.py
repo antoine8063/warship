@@ -70,22 +70,22 @@ def bateau_couler(ligne,colonne):
                
             if plateau_des_joueurs[TJ][ligne][colonne]==2:
                 fin = True
-                ##verifier chaque coordonnés pour bateau pour que savoir si bateau coulé
+                ##verifier chaque coordonnés pour bateau pour savoir si bateau coulé
                 if TJ=="TJ1":
-                    for i in range (5):
-                        for j in range(len(liste_bateaux[i])):
-                            if plateau_des_joueurs[TJ][liste_bateaux[i][j][0]][liste_bateaux[i][j][1]]==1:
-                                fin=False
+                    for ligne in range(len(plateau_j2)):
+                        for j in range(len(plateau_j2[ligne])):
+                            if plateau_des_joueurs[TJ][ligne][j]==1:
+                                fin == False
                     if fin == True:
                         return True
                     else :
                         return "toucher"
                         
                 else:
-                    for i in range (5):
-                        for j in range(len(liste_bateaux[i])):
-                            if plateau_des_joueurs[TJ][liste_bateaux[i][j][0]][liste_bateaux[i][j][1]]==1:
-                                fin=False
+                    for ligne in range(len(plateau_j1)):
+                        for j in range(len(plateau_j1[ligne])):
+                            if plateau_des_joueurs[TJ][ligne][j]==1:
+                                fin == False
                     if fin == True:
                         return True
                     else :
@@ -130,13 +130,15 @@ def cliquer_sur_bouton(case  , ligne ,colonne):
                     for j in range(len(plateau_j2A[ligne])):
                         if plateau_des_joueurs[TJ][ligne][j]==2:
                             plateau_j2A[ligne][colonne]=X
-                    print (plateau_j2A[ligne])
+                    for ligne in plateau_j2A:
+                        print (ligne)
             else:
                 for ligne in range(len(plateau_j1A)):
                     for j in range(len(plateau_j1A[ligne])):
                         if plateau_des_joueurs[TJ][ligne][j]==2:
                             plateau_j1A[ligne][colonne]=X
-                    print (plateau_j1A[ligne])
+                    for ligne in plateau_j1A:
+                        print (ligne)
         elif plateau_des_joueurs[TJ][ligne][colonne]==0:
             if TJ=="J1":
                 plateau_j2A[ligne][colonne]="$"
